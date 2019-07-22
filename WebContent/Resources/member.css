@@ -1,0 +1,15 @@
+@charset "UTF-8";
+	
+.member-form {
+	margin-top:30px;
+}
+	
+.member-form table {
+	width:300px;
+	margin:0 auto;
+	border:none;
+}
+
+.member-form table tr, .member-form table td {
+	border:2px solid lightgray;	
+}

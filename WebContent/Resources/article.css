@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+.article-list {
+	margin-top:30px;
+}
+
+.article-list table {
+    border:none;   
+    border-top:2px solid lightgray;
+    border-bottom:2px solid lightgray;
+}
+
+.article-list > table th, .article-list > table td {
+    border:none;
+}
+
+.article-list > table td {
+    border-bottom:1px solid lightgray;
+}
+
+.article-list > table td.article-title a {
+	color:#4169E1;	
+	font-weight:bold;
+}
+
+.article-list > table td.article-title a:hover {
+	color:#6495ED;	
+	font-weight:normal;
+}
+
+.article-list > table td.article-delete .article-delete-btn {
+	width: 20px;
+	height: 20px;
+	float: right;
+	position: relative;
+	cursor: pointer;
+	background-color:#B0C4DE;
+}
+
+.article-list > table td.article-delete .article-delete-btn:hover {
+	transform: scale(0.8,0.8);
+	background-color:#778899;
+}
+
+.article-list > table td.article-delete .article-delete-btn::before, .article-list > table td.article-delete .article-delete-btn::after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 10%;
+	height: 100%;
+	background-color: black;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.article-list > table td.article-delete .article-delete-btn:hover::before, .article-list > table td.article-delete .article-delete-btn:hover::after {
+	background-color: white;
+}
+	
+.article-list > table td.article-delete .article-delete-btn::after {
+	transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+}
+
+.article-list > table thead {
+    border-bottom:2px solid lightgray;
+    background-color:#F5F5F5;
+}
+
+.article-table {
+	margin-top:30px;
+    border:2px solid lightgray;
+}
+
+.article-table > table {
+    border:none;
+}
+
+.article-detail > table {
+    width:calc(100% - 100px);
+}
+
+.article-table > table td {
+	text-align:left;
+}
+
+.article-table > table th, .article-table > table td {
+    border:none;
+}
+
+.article-table > table tr:not(:last-child) {
+    border-bottom:1px solid lightgray;
+}
+
+.article-table > table tr:not(.article-body), .article-detail > table tr:not(.article-body) > td{
+    height:20px;
+    font-size:0.8rem;
+}
+
+.article-table > table tr.article-title > td {
+    height:40px;
+    font-weight:bold;
+    font-size:1.2rem;
+}
+	
+.article-detail > table td:last-child {
+    padding-right:100px;
+}
+
+.article-detail > .article-writer {
+    width:100px;
+    height:102px;
+    background-color:lightgray;
+    border-bottom:1px solid lightgray;
+    text-align:center;
+}
+
+.article-detail > .article-writer .writer-icon {
+    margin:0 auto;
+    background-color:white;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+
+.article-detail > .article-menu > div {
+	padding:5px;
+}
+
+.article-detail > .article-menu > div a {
+	color:#4169E1;
+	font-weight:bold;
+}
+
+.article-detail > .article-menu > div a:hover {
+	color:#6495ED;
+	font-weight:normal;
+}
+
+.edit-form-table td input[type="text"], .edit-form-table td textarea {
+	width:100%;
+} 
+
+.edit-form-table td textarea {
+	min-height:110px;
+} 
+
+.edit-form-table .btn-box td {
+	text-align:center;
+	
+}
+
+.reply {
+    margin-top:20px;
+    border:2px solid lightgray;
+    padding:15px;
+    box-sizing:border-box;
+    position:relative;
+}
+
+.reply-form {
+    padding:10px;
+}
+
+.reply-form > form input[type="password"] {
+    width:200px;
+}
+
+.reply-form > form textarea {
+    width:calc(80%);
+    min-height:40px;
+}
+
+.reply-form > form input[type="submit"] {
+    width:80px;
+    height:40px;
+    transform:translatey(-40%);
+}
+
+.reply-form > form > div:not(:last-child) {
+    margin-bottom:5px;
+}
+
+.reply-list {
+	margin-top:30px;
+}
+
+.reply-list > table {
+    border:none;
+}
+
+.reply-list > table th {
+    display:none;
+}
+
+.reply-list > table td {
+    border:none;
+}
+
+.reply-list > table tr:nth-child(2n+1) {
+    background-color:rgba(0,0,0,0.06);
+}
+
+.reply-list > table td:first-child {
+    font-weight:bold;
+}
+
+.reply-list > table td:first-child::after {
+    content:" : ";
+    font-weight:bold;
+}
+

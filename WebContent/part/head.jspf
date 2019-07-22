@@ -1,0 +1,135 @@
+<%@ page import="sbs.demo.controller.Controller"%>
+<%@ page import="java.util.*"%>
+<%@ page import="sbs.demo.util.DBUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<% 
+	Map<String, Object> loginedIdInfo = (Map<String, Object>)Controller.getLoginedMemberInfo(request);
+%>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title><%=pageTitle%></title>
+
+<link rel="stylesheet" href="../Resources/lib.css">
+<link rel="stylesheet" href="../Resources/common.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../Resources/common.js"></script>
+<script>
+	var loginedMemberId =
+	<%=Controller.getLoginedMemberId(request)%>
+		;
+		var isNotLogined =
+	<%=Controller.isNotLogined(request)%>
+		;
+		var isLogined =
+	<%=Controller.isLogined(request)%>
+		;
+</script>
+</head>
+
+<body>
+	<div class="popup-bg"></div>
+
+	<div class="popup article-delete-popup">
+
+		<div class="head">
+
+			<div class="btn-close"></div>
+
+		</div>
+
+		<div class="body">
+			
+			<div>삭제하시려면 게시물의 비밀번호를 입력해주세요.</div>
+
+			<form action="./doDelete.sbs" method="POST"
+				onsubmit="submitDeleteForm(this); return false;">
+				<input maxlength="20" type="password" name="passwd"
+					placeholder="비밀번호"> <input type="hidden" name="id" value="">
+				<input type="hidden" name="memberId" value=""> <input
+					type="submit" value="삭제"> <input type="reset" value="취소">
+			</form>
+
+		</div>
+
+	</div>
+
+	<div class="popup article-reply-delete-popup">
+
+		<div class="head">
+
+			<div class="btn-close"></div>
+
+		</div>
+		
+		<div class="body">
+
+			<div>삭제하시려면 댓글의 비밀번호를 입력해주세요.</div>
+
+			<form action="./doDeleteReply.sbs" method="POST"
+				onsubmit="submitDeleteForm(this); return false;">
+				<input maxlength="20" type="password" name="passwd"
+					placeholder="비밀번호"> <input type="hidden" name="id" value="">
+				<input type="hidden" name="memberId" value=""> <input
+					type="submit" value="삭제"> <input type="reset" value="취소">
+			</form>
+
+		</div>
+
+	</div>
+
+	<div class="con top-menu row">
+		<div class="cell-right">
+		<%
+			// 로그인 후 돌아올 페이지로 현재 페이지를 저장해둔다.
+			String redirectUrl = request.getParameter("redirectUrl");
+			String queryString = request.getQueryString();
+
+			if (redirectUrl == null) {
+				redirectUrl = "";
+			}
+
+			if (queryString == null) {
+				queryString = "";
+			}
+
+			// 돌아올 페이지로 지정해둔 값이 없는 상태라면 현재 페이지로 설정해둔다.
+			if (redirectUrl.length() == 0) {
+				redirectUrl = request.getRequestURI() + "?" + queryString;
+			}
+
+			// 현재 페이지가 로그인 페이지라면 돌아올 페이지로 설정하지 않는다.
+			if (redirectUrl.indexOf("login.sbs") != -1 || redirectUrl.indexOf("join.sbs") != -1) {
+				redirectUrl = "";
+			}
+
+			redirectUrl = redirectUrl.replace(".jsp", ".sbs"); %>
+			
+			<a href="../article/add.sbs">글쓰기</a> 
+			<a href="../article/list.sbs">목록보기</a>
+			
+		<%  if (Controller.isNotLogined(request)) {
+		%><a href="../member/login.sbs?redirectUrl=<%=redirectUrl%>">로그인</a> <a
+			href="../member/join.sbs?redirectUrl=<%=redirectUrl%>">회원가입</a>
+		<%
+			} else {
+		%>
+			<%=loginedIdInfo.get("nickName") %>님 
+			<a href="../member/myPage.sbs">마이페이지</a> <a
+				href="../member/modify.sbs">정보수정</a> <a href="../member/doLogout.sbs">로그아웃</a>
+		<%
+			}
+		%>
+
+		</div>
+	</div>
